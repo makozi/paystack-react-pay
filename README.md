@@ -1,139 +1,181 @@
-# Package Template
 
-Animated notification system with stacked toasts and custom positions for React and Next.js.
+# @makozi/paystack-react-pay
 
----
-
-## Features
-
-Animated notification system with stacked toasts and custom positions for React and Next.js.
-
----
-
-## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Reference](#api-reference)
-- [Options](#options)
-- [Styling](#styling)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Features
-
-- Stacked toasts with **slide + fade animations**
-- **Custom positions**: top-right, top-left, bottom-right, bottom-left
-- **Dismiss button** or auto-remove
-- Types: success, error, info, warning
-- Lightweight and compatible with React + Next.js
-- Easy integration with context and hooks
+**@makozi/paystack-react-pay** is a lightweight, fully-typed React library for seamless integration with the Paystack Payment Gateway. It supports three integration patterns—Hook, Button, and Consumer—making it easy to add secure payments to your React or Next.js applications.
 
 ---
 
 ## Installation
 
 ```bash
-npm install @makozi/react-notify-stack react-transition-group
+npm install @makozi/paystack-react-pay
+```
+
+# or
+
+```bash
+yarn add @makozi/paystack-react-pay
 ```
 
 ---
+
+
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Props](#props)
+- [Styling](#styling)
+- [Visualization](#visualization)
+- [Contributing](#contributing)
+- [License](#license)
+- [Repository](#repository)
+- [Homepage](#homepage)
+
+---
+
+
+
+## Features
+
+- **Three integration styles:** Use as a Hook, Button, or Consumer for maximum flexibility.
+- **TypeScript support:** Full type definitions for safety and autocompletion.
+- **Lightweight:** Minimal dependencies and easy to integrate.
+- **Paystack inline integration:** Secure, fast, and reliable payment experience.
+- **Customizable:** Pass additional metadata, currency, and reference.
+- **Easy callbacks:** Handle payment success and close events with simple functions.
+
+
+---
+
+## Installation
+
+```bash
+npm install @makozi/paystack-react-pay
+```
+
+# or
+
+```bash
+yarn add @makozi/paystack-react-pay
+```
+
+---
+
+
 
 ## Usage
 
-Wrap your app with `NotifyProvider` and include `ToastContainer`:
+### 1. Using the Hook
+
+Integrate Paystack using the `usePaystack` hook for full control:
 
 ```tsx
-import React from 'react';
-import { NotifyProvider, ToastContainer, useNotify } from '@makozi/react-notify-stack';
+import { usePaystack } from "@makozi/paystack-react-pay";
 
-const App = () => (
-  <NotifyProvider>
-    <ToastContainer />
-    <Home />
-  </NotifyProvider>
-);
+const HookExample = () => {
+  const { initializePayment } = usePaystack({
+    publicKey: "pk_test_xxxx",
+    email: "test@example.com",
+    amount: 500000, // Amount in kobo
+    onSuccess: (res) => console.log(res),
+    onClose: () => console.log("Closed")
+  });
 
-const Home = () => {
-  const { notify } = useNotify();
-
-  return (
-    <button
-      onClick={() =>
-        notify('This is an animated notification!', {
-          type: 'success',
-          position: 'bottom-left'
-        })
-      }
-    >
-      Show Notification
-    </button>
-  );
+  return <button onClick={initializePayment}>Pay with Hook</button>;
 };
-
-export default App;
 ```
 
+### 2. Using the Button
+
+Use the `PaystackButton` component for a quick integration:
+
+```tsx
+import { PaystackButton } from "@makozi/paystack-react-pay";
+
+const ButtonExample = () => (
+  <PaystackButton
+    publicKey="pk_test_xxxx"
+    email="test@example.com"
+    amount={500000}
+    onSuccess={(res) => console.log(res)}
+    onClose={() => console.log("Closed")}
+    text="Pay with Button"
+  />
+);
+```
+
+### 3. Using the Consumer
+
+Use the `PaystackConsumer` for advanced scenarios and render props:
+
+```tsx
+import { PaystackConsumer } from "@makozi/paystack-react-pay";
+
+const ConsumerExample = () => (
+  <PaystackConsumer
+    config={{
+      publicKey: "pk_test_xxxx",
+      email: "test@example.com",
+      amount: 500000,
+      onSuccess: (res) => console.log(res),
+      onClose: () => console.log("Closed")
+    }}
+  >
+    {(initializePayment) => (
+      <button onClick={initializePayment}>Pay with Consumer</button>
+    )}
+  </PaystackConsumer>
+);
+```
+
+
 ---
 
-## API Reference
 
-### `NotifyProvider`
-Wraps your application and provides notification context.
 
-### `ToastContainer`
-Renders the stack of toasts. Place it inside `NotifyProvider`.
+## Props
 
-### `useNotify()`
-Custom hook to trigger notifications.
+All integration styles accept the following props:
 
-#### `notify(message, options)`
-- `message` (`string`): Toast text
-- `options` (`object`): See [Options](#options)
+| Prop         | Type     | Required | Description                                 | Default   |
+|--------------|----------|----------|---------------------------------------------|-----------|
+| publicKey    | string   | Yes      | Paystack public key                         | —         |
+| email        | string   | Yes      | Customer email                              | —         |
+| amount       | number   | Yes      | Amount in kobo (e.g., 500000 for ₦5,000)    | —         |
+| reference    | string   | No       | Optional transaction reference               | Auto-gen  |
+| currency     | string   | No       | Currency code (e.g., NGN, USD, GHS)         | NGN       |
+| metadata     | object   | No       | Additional data to pass to Paystack          | —         |
+| onSuccess    | function | Yes      | Callback on successful payment               | —         |
+| onClose      | function | No       | Callback when payment modal is closed        | —         |
+| text         | string   | No       | Button text (for Button only)                | Pay Now   |
 
----
+### Callback Details
 
-## Options
+- `onSuccess(response)`: Invoked with the Paystack transaction response on successful payment.
+- `onClose()`: Invoked when the payment modal is closed without completing payment.
 
-| Option    | Type     | Description                                                      | Default      |
-|-----------|----------|------------------------------------------------------------------|--------------|
-| message   | string   | Toast text                                                       | —            |
-| type      | string   | success, error, info, warning                                    | info         |
-| position  | string   | top-right, top-left, bottom-right, bottom-left                   | top-right    |
-| duration  | number   | Time in ms before auto-dismiss                                   | 4000         |
 
 ---
+
 
 ## Styling
 
-The package includes default CSS animations in `toast-animations.css`. You can override styles as needed.
-
-```js
-import '@makozi/react-notify-stack/dist/toast-animations.css';
-```
-
----
-
-## Contributing
-
-Contributions are welcome! Please open issues or submit PRs for improvements or bug fixes.
-
----
-
+The package is UI-agnostic and does not include styles. You can style your payment button or modal as needed in your application.
 
 ---
 
 ## Visualization
 
-Below are visual examples of the toast notifications:
+Below is a visual example of a payment button integration:
 
-### Bottom Right Toast
-![Bottom Right Toast]({D983D394-D526-49C6-B5DA-9891F3CB0303}.png)
 
-### Bottom Left Toast
-![Bottom Left Toast]({F71D2B51-0346-4917-BC47-F69AD9546B0F}.png)
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open issues for bugs or feature requests, and submit pull requests for improvements. All contributions should follow the code of conduct and include clear documentation and tests where applicable.
 
 ---
 
@@ -146,10 +188,10 @@ MIT © Makozi Marizu-Ibewiro
 
 ## Repository
 
-[https://github.com/makozi/react-notify-stack](https://github.com/makozi/react-notify-stack)
+[GitHub Repository](https://github.com/makozi/paystack-react-pay)
 
 ## Homepage
 
-[https://github.com/makozi/react-notify-stack](https://github.com/makozi/react-notify-stack)
+[Project Homepage](https://github.com/makozi/paystack-react-pay)
 
  

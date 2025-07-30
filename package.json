@@ -1,7 +1,7 @@
 {
-  "name": "package-name",
+  "name": "@makozi/paystack-react-pay",
   "version": "1.0.0",
-  "description": "Package description goes here.",
+  "description": "React library to integrate Paystack payment gateway (hook, button, consumer) using @paystack/inline-js.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -15,12 +15,36 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
-  "homepage": "https://github.com/makozi/react-user-avatar-generator",
+  "dependencies": {
+    "@paystack/inline-js": "^2.0.1",
+    "@types/paystack__inline-js": "^1.0.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "rollup": "^4.46.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/makozi/paystack-react-pay/issues"
+  },
+  "homepage": "https://github.com/makozi/paystack-react-pay",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makozi/react-user-avatar-generator.git"
+    "url": "https://github.com/makozi/paystack-react-pay.git"
   },
-  "keywords": ["react", "template"],
+  "keywords": [
+    "paystack",
+    "react",
+    "payment",
+    "hooks",
+    "button",
+    "consumer"
+  ],
   "author": "Makozi Marizu-Ibewiro",
   "license": "MIT"
 }
