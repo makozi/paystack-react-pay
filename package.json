@@ -1,0 +1,21 @@
+{
+  "name": "package-name",
+  "version": "1.0.0",
+  "description": "Package description goes here.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "keywords": ["react", "template"],
+  "author": "Makozi Marizu-Ibewiro",
+  "license": "MIT"
+}
