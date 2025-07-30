@@ -1,7 +1,7 @@
 
 # @makozi/paystack-react-pay
 
-**@makozi/paystack-react-pay** is a lightweight, fully-typed React library for seamless integration with the Paystack Payment Gateway. It supports three integration patterns—Hook, Button, and Consumer—making it easy to add secure payments to your React or Next.js applications.
+**@makozi/paystack-react-pay** is a lightweight, fully-typed React library for seamless integration with the Paystack Payment Gateway. It supports three integration patterns: Hook, Button, and Consumer, making it easy to add secure payments to your React or Next.js applications.
 
 ---
 
