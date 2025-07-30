@@ -12,7 +12,7 @@ export const usePaystack = (config: PaystackConfig) => {
       amount: config.amount,
       currency: config.currency || 'NGN',
       reference: config.reference || `${new Date().getTime()}`,
-      metadata: config.metadata,
+      metadata: typeof config.metadata === 'object' && config.metadata !== null ? config.metadata : {},
       onSuccess: config.onSuccess,
       onCancel: config.onClose
     });
