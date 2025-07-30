@@ -5,6 +5,16 @@
 
 ---
 
+
+## Demo
+
+Below is a screenshot of the Paystack payment modal in test mode:
+
+<img width="601" height="363" alt="Image" src="https://github.com/user-attachments/assets/aa0cbeac-c4b6-41ee-840a-b36a8be4f4bb" />
+
+---
+
+
 ## Installation
 
 ```bash
@@ -165,13 +175,6 @@ The package is UI-agnostic and does not include styles. You can style your payme
 
 ---
 
-## Demo
-
-Below is a screenshot of the Paystack payment modal in test mode:
-
-![Paystack Demo]({D165EDE8-E043-4FE6-8D32-41F01353BFE1}.png)
-
----
 
 ## Deployment
 
