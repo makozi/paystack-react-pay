@@ -205,8 +205,15 @@ MIT © Makozi Marizu-Ibewiro
 
 [GitHub Repository](https://github.com/makozi/paystack-react-pay)
 
-## Homepage
 
-[Project Homepage](https://github.com/makozi/paystack-react-pay)
+## Support & Connect
+
+If you found this project helpful, please consider starring the repository on GitHub—it means a lot! Feel free to share the link on Twitter or any social platform to help others discover it.
+
+Stay connected and follow me on Twitter: [@marizu_makozi](https://twitter.com/marizu_makozi)
+
+Thank you for your support!
+
+— Makozi Marizu-Ibewiro
 
  
