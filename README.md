@@ -165,9 +165,21 @@ The package is UI-agnostic and does not include styles. You can style your payme
 
 ---
 
-## Visualization
+## Demo
 
-Below is a visual example of a payment button integration:
+Below is a screenshot of the Paystack payment modal in test mode:
+
+![Paystack Demo]({D165EDE8-E043-4FE6-8D32-41F01353BFE1}.png)
+
+---
+
+## Deployment
+
+**Note:** Before deploying to a live/production environment, ensure you update your Paystack public key from the test key to your live key. Using a test key in production will block real transactions and may compromise your integration.
+
+---
+
+
 
 
 
