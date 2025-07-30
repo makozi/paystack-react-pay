@@ -15,6 +15,11 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "homepage": "https://github.com/makozi/react-user-avatar-generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makozi/react-user-avatar-generator.git"
+  },
   "keywords": ["react", "template"],
   "author": "Makozi Marizu-Ibewiro",
   "license": "MIT"
