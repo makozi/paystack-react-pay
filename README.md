@@ -12,6 +12,9 @@ Below is a screenshot of the Paystack payment modal in test mode:
 
 <img width="601" height="363" alt="Image" src="https://github.com/user-attachments/assets/aa0cbeac-c4b6-41ee-840a-b36a8be4f4bb" />
 
+
+![Demo](https://i.imgur.com/O9J1MRq.png)
+
 ---
 
 
